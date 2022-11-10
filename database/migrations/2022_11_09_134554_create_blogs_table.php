@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longtext('content');
-            $table->boolean('is_read')->default(false);
+            $table->boolean('is_read');
             $table->timestamps();
         });
     }

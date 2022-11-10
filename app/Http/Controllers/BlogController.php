@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Repository\BlogRepository;
 use Illuminate\Http\Request;
 
@@ -68,13 +69,23 @@ class BlogController extends Controller
         
     }
 
-    public function getReadBlog()
+    public function getAllReadBlog()
     {
         return response()->json([
             "success" => true,
             "code" => 200,
-            "message" => "Berhasil mendapatkan data blog yang sudah dibaca!",
-            "data" => $this->blog->getReadBlog()
+            "message" => "Berhasil get data blog yang sudah dibaca!",
+            "data" => $this->blog->allReadBlog()
+        ], 200);
+    }
+
+    public function changeStatus($blogId)
+    {
+        return response()->json([
+            "success" => true,
+            "code" => 200,
+            "message" => "Berhasil membaca blog!",
+            "data" => $this->blog->readBlog($blogId)
         ], 200);
     }
 }

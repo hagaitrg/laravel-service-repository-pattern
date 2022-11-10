@@ -10,7 +10,8 @@ interface BlogRepositoryInteface
     public function createBlog(array $data);
     public function updateBlog($blogId, array $data);
     public function deleteBlog($blogId);
-    public function getReadBlog();
+    public function allReadBlog();
+    public function readBlog($blogId);
 }
 
 class BlogRepository implements BlogRepositoryInteface 
@@ -40,8 +41,15 @@ class BlogRepository implements BlogRepositoryInteface
         return Blog::whereId($blogId)->delete();
     }
 
-    public function getReadBlog()
+    public function allReadBlog()
     {
-        return Blog::where('is_read', true);
+        return  Blog::where('is_read', true)->get();
+    }
+
+    public function readBlog($blogId)
+    {
+        return Blog::whereId($blogId)->update([
+            "is_read" => true,
+        ]);
     }
 }
